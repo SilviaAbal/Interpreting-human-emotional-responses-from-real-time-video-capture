@@ -8,5 +8,5 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 <p><b>SCALED</p></b>
 ![](tabla.JPG width="400" height="200")
 
-<img src = “images/tabla.JPG” width="400" height="200" />
+<img src = “images/tabla_eng.JPG” width="400" height="200" />
 
