@@ -5,5 +5,7 @@ Convolutional Neural Networks (CNN) are used to carry out this part of the robot
 
 For our problem, it is not necessary to differentiate such specific emotions, but rather it is sufficient to differentiate three types of categories: positive, negative and neutral. What we are really interested in is whether the action that the robot has decided to perform is well received or not by the user. For example, what does it mean to express happiness as a response to an action, under our criteria, we understand and classify the emotion happiness as a positive response. Following this criterion, we relabelled the AffectNet database and created an additional one in order to adjust the model to the user it is currently assisting. In this way, the pre-trained model is finely tuned to the expressions of the actual patient and his or her environment, making it more effective in the context of application. 
 
-![](tabla.jpg)
-<img src = “images/tabla.jpg” width = 200 height =_>
+<p><b>SCALED</p></b>
+<p align="center">
+<img src = “images/tabla.JPG”>
+</p>
