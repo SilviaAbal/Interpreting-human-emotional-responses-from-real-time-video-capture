@@ -8,3 +8,13 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 <p align="center">
 <img src = "images/tabla_eng.JPG" width="700" />
 </p>
+
+# Table of contents
+
+# Dependencies
+
+# Project Structure
+
+# Usage
+
+# Data preparation
