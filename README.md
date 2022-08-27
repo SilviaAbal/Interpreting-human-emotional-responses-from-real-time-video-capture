@@ -12,8 +12,57 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 # Table of contents
 
 # Dependencies
-To install the required packages, ``run pip install -r requirements.txt``
+To install the required packages, run ``pip install -r requirements.txt``
 # Project Structure
+
+Interpreting-human-emotional-responses-from-real-time-video-capture/
+├── README.md
+├── config.py
+├── dataset_creation.py
+├── emotions.py
+├── evaluation.py
+├── AffectNet_relabelled
+│  ├── positive
+│  ├── negative
+│  └── neutral
+├── 3-fold
+│   ├── 1fold
+│   │   ├── train
+│   │   │  ├── positive
+│   │   │  ├── negative
+│   │   │  └── neutral
+│   │   └──  test
+│   │   │  ├── positive
+│   │   │  ├── negative
+│   │   │  └── neutral
+│   ├── 2fold
+│   │   ├── train
+│   │   │  ├── positive
+│   │   │  ├── negative
+│   │   │  └── neutral
+│   │   └──  test
+│   │   │  ├── positive
+│   │   │  ├── negative
+│   │   │  └── neutral
+│   └──  3fold
+│   │   ├── train
+│   │   │  ├── positive
+│   │   │  ├── negative
+│   │   │  └── neutral
+│   │   └──  test
+│   │   │  ├── positive
+│   │   │  ├── negative
+│   │   │  └── neutral
+├── classifier
+│   ├── haarcascade_eye
+│   └── haarcascade_frontalface_default
+├── pretrained_models
+│   ├── model_display_1.pt
+│   ├── model_display_2.pt
+│   ├── model_display_3.pt
+│   └── model_finetunning.pt
+└── weak_loss_layer
+│   └── weak_loss.py
 
 # Usage
 
