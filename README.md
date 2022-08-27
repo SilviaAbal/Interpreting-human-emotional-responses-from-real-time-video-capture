@@ -68,19 +68,23 @@ To install the required packages, run ``pip install -r requirements.txt``
 
 # Usage
 To be able to use this emotion detection system, you must first download this repository and install the dependencies if necessary.
+
 ``
 git clone https://github.com/atulapra/Emotion-detection.git
 ``
+
 The implemented code allows to re-train the model if desired or to use the system in real time using a webcam with a pre-trained model.
 
 The idea of fine-tuning the model is to make it work better with the people the robot is assisting, hence the creation of its own database. To be able to re-train it, our database can be used with permission together with the affecnet database to avoid possible overfitting. In the same way, if you have your own database, you can use it, but you have to take into account the file hierarchy and file syntax.
 
 To train the model:
+
 ``
 python emotions.py --mode train
 ``
 
 To detect human reactions in real time:
+
 ``
 python emotions.py --mode display
 ``
