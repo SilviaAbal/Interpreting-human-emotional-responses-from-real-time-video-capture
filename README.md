@@ -17,4 +17,7 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 
 # Usage
 
+# Datasets
+https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sharing
+
 # Data preparation
