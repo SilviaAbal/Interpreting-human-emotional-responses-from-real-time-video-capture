@@ -15,57 +15,75 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 To install the required packages, run ``pip install -r requirements.txt``
 # Project Structure
 
-``
-Interpreting-human-emotional-responses-from-real-time-video-capture/
-├── README.md
-├── config.py
-├── dataset_creation.py
-├── emotions.py
-├── evaluation.py
-├── AffectNet_relabelled
-│  ├── positive
-│  ├── negative
-│  └── neutral
-├── 3-fold
-│   ├── 1fold
-│   │   ├── train
-│   │   │  ├── positive
-│   │   │  ├── negative
-│   │   │  └── neutral
-│   │   └──  test
-│   │   │  ├── positive
-│   │   │  ├── negative
-│   │   │  └── neutral
-│   ├── 2fold
-│   │   ├── train
-│   │   │  ├── positive
-│   │   │  ├── negative
-│   │   │  └── neutral
-│   │   └──  test
-│   │   │  ├── positive
-│   │   │  ├── negative
-│   │   │  └── neutral
-│   └──  3fold
-│   │   ├── train
-│   │   │  ├── positive
-│   │   │  ├── negative
-│   │   │  └── neutral
-│   │   └──  test
-│   │   │  ├── positive
-│   │   │  ├── negative
-│   │   │  └── neutral
-├── classifier
-│   ├── haarcascade_eye
-│   └── haarcascade_frontalface_default
-├── pretrained_models
-│   ├── model_display_1.pt
-│   ├── model_display_2.pt
-│   ├── model_display_3.pt
-│   └── model_finetunning.pt
-└── weak_loss_layer
-│   └── weak_loss.py
-``
+
+    Interpreting-human-emotional-responses-from-real-time-video-capture/                               
+    ├── AffectNet_relabelled
+    │  ├── positive
+    │  ├── negative
+    │  └── neutral
+    ├── 3-fold
+    │   ├── 1fold
+    │   │   ├── train
+    │   │   │  ├── positive
+    │   │   │  ├── negative
+    │   │   │  └── neutral
+    │   │   └──  test
+    │   │   │  ├── positive
+    │   │   │  ├── negative
+    │   │   │  └── neutral
+    │   ├── 2fold
+    │   │   ├── train
+    │   │   │  ├── positive
+    │   │   │  ├── negative
+    │   │   │  └── neutral
+    │   │   └──  test
+    │   │   │  ├── positive
+    │   │   │  ├── negative
+    │   │   │  └── neutral
+    │   └──  3fold
+    │   │   ├── train
+    │   │   │  ├── positive
+    │   │   │  ├── negative
+    │   │   │  └── neutral
+    │   │   └──  test
+    │   │   │  ├── positive
+    │   │   │  ├── negative
+    │   │   │  └── neutral
+    ├── classifier
+    │   ├── haarcascade_eye
+    │   └── haarcascade_frontalface_default
+    ├── pretrained_models
+    │   ├── model_display_1.pt
+    │   ├── model_display_2.pt
+    │   ├── model_display_3.pt
+    │   └── model_finetunning.pt
+    ├── weak_loss_layer
+    │   └── weak_loss.py
+    ├── config.py
+    ├── dataset_creation.py
+    ├── emotions.py
+    ├── evaluation.py
+    ├── LICENSE
+    └── README.md
+
 # Usage
+To be able to use this emotion detection system, you must first download this repository and install the dependencies if necessary.
+``
+git clone https://github.com/atulapra/Emotion-detection.git
+``
+The implemented code allows to re-train the model if desired or to use the system in real time using a webcam with a pre-trained model.
+
+The idea of fine-tuning the model is to make it work better with the people the robot is assisting, hence the creation of its own database. To be able to re-train it, our database can be used with permission together with the affecnet database to avoid possible overfitting. In the same way, if you have your own database, you can use it, but you have to take into account the file hierarchy and file syntax.
+
+To train the model:
+``
+python emotions.py --mode train
+``
+
+To detect human reactions in real time:
+``
+python emotions.py --mode display
+``
 
 # Datasets
 - Own Dataset
@@ -73,3 +91,12 @@ https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sha
 - AffectNet Dataset
 
 # Data preparation
+
+    .
+    ├── build                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
