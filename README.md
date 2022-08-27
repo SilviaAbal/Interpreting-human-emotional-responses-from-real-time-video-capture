@@ -18,6 +18,8 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 # Usage
 
 # Datasets
+- Own Dataset
 https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sharing
+- AffectNet Dataset
 
 # Data preparation
