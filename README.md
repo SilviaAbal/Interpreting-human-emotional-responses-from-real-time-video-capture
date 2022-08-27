@@ -15,6 +15,7 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 To install the required packages, run ``pip install -r requirements.txt``
 # Project Structure
 
+``
 Interpreting-human-emotional-responses-from-real-time-video-capture/
 ├── README.md
 ├── config.py
@@ -63,7 +64,7 @@ Interpreting-human-emotional-responses-from-real-time-video-capture/
 │   └── model_finetunning.pt
 └── weak_loss_layer
 │   └── weak_loss.py
-
+``
 # Usage
 
 # Datasets
