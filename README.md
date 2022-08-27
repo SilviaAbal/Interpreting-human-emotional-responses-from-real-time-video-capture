@@ -12,7 +12,7 @@ For our problem, it is not necessary to differentiate such specific emotions, bu
 # Table of contents
 
 # Dependencies
-
+To install the required packages, run pip install -r requirements.txt
 # Project Structure
 
 # Usage
