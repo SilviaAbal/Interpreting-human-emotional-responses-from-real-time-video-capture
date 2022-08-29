@@ -153,7 +153,7 @@ If as in our case we intend to use the AffectNet database, it must be relabelled
 
 
 # Results
-On average, in the 3-fold cross-validation, an accuracy of 82.58 % is achieved. 
+On average, in the 3-fold cross-validation, an accuracy of <b> 82.58% </b> is achieved. 
 
 <p align="center">
 <img src = "images/results.JPG" width="700" />
