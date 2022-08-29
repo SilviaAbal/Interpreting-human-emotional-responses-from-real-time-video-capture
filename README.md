@@ -91,7 +91,7 @@ The idea of tuning the model is to make it work better with the people the robot
     ``
 ## Advanced Usage
 
-The model can be retrained with the default parameters, as in the example above, or the following variables can be specified by command line: 
+Only for the ``--mode train`` option. The model can be retrained with the default parameters, as in the example above, or the following variables can be specified by command line: 
 
      --num_epoch (int)                  # Number of epochs for training the network
      --batch size (int)                 # Batch size for the training of the network
@@ -108,7 +108,7 @@ The model can be retrained with the default parameters, as in the example above,
     python emotions.py --mode train --batch_size 23
     ``
 
-{The default parameters are specified in the file "config.py".}
+The default parameters are specified in the file "config.py".
 
 # Datasets
 Two different databases have been used to implement this system: 
@@ -142,4 +142,9 @@ Another important thing to take into account is that with this model we can obta
 
 If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. if needed we could make available the code we have used for it. 
 
+# Example of use
+
+# Results
+
+# References
 
