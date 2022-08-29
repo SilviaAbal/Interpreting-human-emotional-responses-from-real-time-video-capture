@@ -77,6 +77,7 @@ The implemented code allows to fine-tuning the model if desired or to use the sy
 
 The idea of tuning the model is to make it work better with the people the robot is assisting, hence the decision to create its own database. If a user finds it necessary to adjust the model to work better with the people he/she considers, he/she has the possibility to adjust the model using the "train" option. To do this, the hierarchy and syntax of the files must be taken into account. Similarly, you can make use of our own database with permission. It should be noted that we use a very small percentage of the images from the AffectNet database to adjust the model in order to avoid a possible overfitting of the model to our own images.
 
+## Simple Usage
 - To train the model:
 
     ``
@@ -88,18 +89,23 @@ The idea of tuning the model is to make it work better with the people the robot
     ``
     python emotions.py --mode display
     ``
+## Advanced Usage
+
+
 
 # Datasets
 Two different databases have been used to implement this system: 
 
 - <b> AffectNet Dataset: </b>
 
-    In a first stage, for the creation of the main model the affecnet database has been used. A reduced version has been used with only 8 tags: Neutral, Happiness, Sadness, Surprise, Fear, Disgust, Anger, Contempt. AffecNet-8 includes 291,650 images, divided by the authors themselves into 287,651 training samples and 3,999 validation samples. 
+    In a first stage, for the creation of the main model the AffectNet Database has been used. A reduced version has been used with only 8 tags: Neutral, Happiness, Sadness, Surprise, Fear, Disgust, Anger, Contempt. AffecNet-8 includes 291,650 images, divided by the authors themselves into 287,651 training samples and 3,999 validation samples. 
 
     In this paper we will use the images corresponding to the categorical labels of all available emotions except for the category surprise. This is due to its ambiguity in giving it a more generic meaning. We consider that this emotion can carry both a positive and a negative meaning as a response to an action, so it has been decided to dispense with all of these samples. As for the other categories, we have redefined them as follows: positive emotion: happiness; neutral: neutral; negative: sadness, fear, disgust, anger and contempt. 
 
     So, finally, we have a total of 277,060 samples, of which 75,374 images correspond to the neutral category, 134,915 to the positive category and, finally, 66,771 to the negative category.
-
+    
+    This database has also been used in the last stage of the implementation of the final system, but not in its entirety, only 0.05% of the total number of samples has been used. This has been decided as it avoids an overfitting of the model to the images used from our own database.
+    
     This database is available here: http://mohammadmahoor.com/affectnet/
 
 - <b> Own Dataset: </b>
@@ -107,6 +113,10 @@ https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sha
 
 
 # Data preparation
+
+- ver data estructure, que tiene que estar igual.
+- affecnet rellabel, funcion
+- si haces un propio dataset para que funcione
 
     .
     ├── build                   # Compiled files (alternatively `dist`)
@@ -116,3 +126,4 @@ https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sha
     ├── tools                   # Tools and utilities
     ├── LICENSE
     └── README.md
+
