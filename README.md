@@ -91,7 +91,24 @@ The idea of tuning the model is to make it work better with the people the robot
     ``
 ## Advanced Usage
 
+The model can be retrained with the default parameters, as in the example above, or the following variables can be specified by command line: 
 
+     --num_epoch (int)                  # Number of epochs for training the network
+     --batch size (int)                 # Batch size for the training of the network
+     --lr (float)                       # Learning rate
+     --gamma (float)                    # Discount rate of future rewards
+     --percentage (float)               # Percentage of AffectNet images used for finetunning the model [0,100]
+     --weight_decay (float)             # L2 regularization method
+     --results_per_person (boolean)     # Display the results obtained per person identified in the dataset
+     --pretrained_model_display (int)   # Selection of pretrained model used (1,2,3)
+
+<b> Example </b>
+
+ ``
+    python emotions.py --mode train --batch_size 23
+    ``
+
+The default parameters are specified in the file "config.py". 
 
 # Datasets
 Two different databases have been used to implement this system: 
@@ -109,7 +126,10 @@ Two different databases have been used to implement this system:
     This database is available here: http://mohammadmahoor.com/affectnet/
 
 - <b> Own Dataset: </b>
-https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sharing
+    
+    Our own database has been made from video recordings. For this purpose, a total of 4 volunteers recorded a total of 26 videos, from which 664 images were obtained, distributed among the three available categories as follows: 283 samples from the neutral category, 186 positive samples and 195 from the negative category. An example of the images available in this database is shown in Figure 1.
+    
+    This database is available here: https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sharing
 
 
 # Data preparation
@@ -118,12 +138,4 @@ https://drive.google.com/drive/folders/187Pg1hq5Bi1o-dYWYC47xSVxOLf8Pyte?usp=sha
 - affecnet rellabel, funcion
 - si haces un propio dataset para que funcione
 
-    .
-    ├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
 
