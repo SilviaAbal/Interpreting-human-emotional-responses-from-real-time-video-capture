@@ -134,21 +134,12 @@ Two different databases have been used to implement this system:
 
 # Data preparation
 
-- see data structure, which has to be the same.
-- affecnet rellabel, function
-- if you make a dataset of your own to make it work
+In order to be able to use the "train" function, you need to have a database with a folder structure identical to the 3-fold shown in [Project Structure](#Project-Structure). 
 
-In order to be able to use the "train" function, you need to have a database with a folder structure identical to the one shown in [Project Structure](#Project-Structure), 3-fold. 
+Another important thing to take into account is that with this model we can obtain the score of each emotion distinguished by the persons identified in the database. The syntax of the image names has to be of the form ``--results_per_person True``: 
 
-Another important thing to take into account is that with this model we can obtain the individual precision of each individual identified in the image, for this to be possible it is necessary that in the name of the images the identified person appears and that in each image of that person the name is the same. the syntax of the names of the images has to be of the form: 
+``nameperson_idxnum``
 
-If, as in our case, we intend to use the affectnet database, it must be relabelled according to the criteria we have taken and with the same folder hierarchy. If necessary, the code we have used for this could be made available. 
-
-
-
-
-- ver data estructure, que tiene que estar igual.
-- affecnet rellabel, funcion
-- si haces un propio dataset para que funcione
+If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. if needed we could make available the code we have used for it. 
 
 
