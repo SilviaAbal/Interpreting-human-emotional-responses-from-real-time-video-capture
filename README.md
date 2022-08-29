@@ -70,7 +70,7 @@ To install the required packages, run ``pip install -r requirements.txt``
 To be able to use this emotion detection system, you must first download this repository and install the dependencies if necessary.
 
 ``
-git clone https://github.com/atulapra/Emotion-detection.git
+git clone https://github.com/SilviaAbal/Interpreting-human-emotional-responses-from-real-time-video-capture.git
 ``
 
 The implemented code allows to fine-tuning the model if desired or to use the system in real time using a webcam with a pre-trained model.
