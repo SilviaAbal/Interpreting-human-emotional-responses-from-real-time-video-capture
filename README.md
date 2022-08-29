@@ -138,7 +138,7 @@ In order to be able to use the "train" function, you need to have a database wit
 
 Another important thing to take into account is that with this model we can obtain the score of each emotion distinguished by the persons identified in the database. The syntax of the image names has to be of the form ``--results_per_person True``: 
 
-``nameperson_idxnum``
+``nameperson_idxnum.jpg``
 
 If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. if needed we could make available the code we have used for it. 
 
