@@ -149,7 +149,7 @@ Another important thing to take into account is that with this model we can obta
 
 ``nameperson_idxnum.jpg``
 
-If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. if needed we could make available the code we have used for it. 
+If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. To do this, you can use the available code ``relabelling_AffectNet.py``
 
 
 # Results
