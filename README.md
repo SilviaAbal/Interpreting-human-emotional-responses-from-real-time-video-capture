@@ -149,8 +149,7 @@ Another important thing to take into account is that with this model we can obta
 
 ``nameperson_idxnum.jpg``
 
-If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. To do this, you can use the available code ``relabelling_AffectNet.py``
-
+If as in our case we intend to use the AffectNet database, it must be relabelled following the criteria we have taken and saved with the same folder gerarchy. To do this, you can use the available code ``relabelling_AffectNet.py``.It is important that the two downloaded files 'train_set' and 'val_set' from the AffectNet database are in the same directory as the given code.
 
 # Results
 On average, in the 3-fold cross-validation, an accuracy of <b> 82.58% </b> is achieved. 
