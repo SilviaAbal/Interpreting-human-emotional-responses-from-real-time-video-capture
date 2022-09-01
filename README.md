@@ -82,7 +82,7 @@ To be able to use this emotion detection system, you must first download this re
 git clone https://github.com/SilviaAbal/Interpreting-human-emotional-responses-from-real-time-video-capture.git
 ``
 
-The implemented code allows to fine-tuning the model if desired or to use the system in real time using a webcam with a pre-trained model.
+The implemented code allows to fine-tuning the model if desired or to use the system in real time using a webcam or video with a pre-trained model.
 
 The idea of tuning the model is to make it work better with the people the robot is assisting, hence the decision to create its own database. If a user finds it necessary to adjust the model to work better with the people he/she considers, he/she has the possibility to adjust the model using the "train" option. To do this, the hierarchy and syntax of the files must be taken into account. Similarly, you can make use of our own database with permission. It should be noted that we use a very small percentage of the images from the AffectNet database to adjust the model in order to avoid a possible overfitting of the model to our own images.
 
@@ -95,15 +95,15 @@ The pretrained_models folder does not contain any files, this is because each of
     python emotions.py --mode train
     ``
 
-- To detect human reactions in real time:
+- To detect human reactions in real time (webcam/video):
 
     ``
     python emotions.py --mode display
     ``
 ## Advanced Usage
+The model can be retrained with the default parameters, as in the example above, or the following variables can be specified by command line: 
 
-Only for the ``--mode train`` option. The model can be retrained with the default parameters, as in the example above, or the following variables can be specified by command line: 
-
+- --mode train
      --num_epoch (int)                  # Number of epochs for training the network
      --batch size (int)                 # Batch size for the training of the network
      --lr (float)                       # Learning rate
@@ -111,8 +111,10 @@ Only for the ``--mode train`` option. The model can be retrained with the defaul
      --percentage (float)               # Percentage of AffectNet images used for finetunning the model [0,100]
      --weight_decay (float)             # L2 regularization method
      --results_per_person (boolean)     # Display the results obtained per person identified in the dataset
+     
+- --mode display
      --pretrained_model_display (int)   # Selection of pretrained model used (1,2,3)
-     --frame_rate (int)                 # Selects the sample rate of the input video or video captured by the webcam
+     --frame_rate (int)                 # Selects the number of frames necessary to determine a valid emotion 
      --display_mode (str)               # webcam/video. Selects input data from the model, emotions can be detected in real time via webcam or video input by the user.
      
 
