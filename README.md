@@ -103,21 +103,24 @@ The pretrained_models folder does not contain any files, this is because each of
 ## Advanced Usage
 The model can be retrained with the default parameters, as in the example above, or the following variables can be specified by command line: 
 
-- --mode train
-     --num_epoch (int)                  # Number of epochs for training the network
-     --batch size (int)                 # Batch size for the training of the network
-     --lr (float)                       # Learning rate
-     --gamma (float)                    # Discount rate of future rewards
-     --percentage (float)               # Percentage of AffectNet images used for finetunning the model [0,100]
-     --weight_decay (float)             # L2 regularization method
-     --results_per_person (boolean)     # Display the results obtained per person identified in the dataset
-     
-- --mode display
-     --pretrained_model_display (int)   # Selection of pretrained model used (1,2,3)
-     --frame_rate (int)                 # Selects the number of frames necessary to determine a valid emotion 
-     --display_mode (str)               # webcam/video. Selects input data from the model, emotions can be detected in real time via webcam or video input by the user.
-     
+- <b>--mode train</b>
 
+         --num_epoch (int)                  # Number of epochs for training the network
+         --batch size (int)                 # Batch size for the training of the network
+         --lr (float)                       # Learning rate
+         --gamma (float)                    # Discount rate of future rewards
+         --percentage (float)               # Percentage of AffectNet images used for finetunning the model [0,100]
+         --weight_decay (float)             # L2 regularization method
+         --results_per_person (boolean)     # Display the results obtained per person identified in the dataset
+     
+- <b>--mode display</b>
+
+         --pretrained_model_display (int)   # Selection of pretrained model used (1,2,3)
+         --frame_rate (int)                 # Selects the number of frames necessary to determine a valid emotion 
+         --display_mode (str)               # webcam/video. Selects input data from the model, emotions can be detected in real time via webcam or video input by the user.
+     
+> By default the display mode will access your webcam. If you prefer this analysis to be done via recorded videos, you must indicate this with ``--display_mode video``, then you will be asked for the full path of the video file.
+     
 <b> Example </b>
 
  ``
