@@ -86,6 +86,8 @@ The implemented code allows to fine-tuning the model if desired or to use the sy
 
 The idea of tuning the model is to make it work better with the people the robot is assisting, hence the decision to create its own database. If a user finds it necessary to adjust the model to work better with the people he/she considers, he/she has the possibility to adjust the model using the "train" option. To do this, the hierarchy and syntax of the files must be taken into account. Similarly, you can make use of our own database with permission. It should be noted that we use a very small percentage of the images from the AffectNet database to adjust the model in order to avoid a possible overfitting of the model to our own images.
 
+The pretrained_models folder does not contain any files, this is because each of them exceeded the allowed capacity in github. These files can be found in the release section. Once downloaded, save them in the corresponding folder according to the hierarchy shown in [Project Structure](#Project-Structure).
+
 ## Simple Usage
 - To train the model:
 
