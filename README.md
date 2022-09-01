@@ -112,6 +112,9 @@ Only for the ``--mode train`` option. The model can be retrained with the defaul
      --weight_decay (float)             # L2 regularization method
      --results_per_person (boolean)     # Display the results obtained per person identified in the dataset
      --pretrained_model_display (int)   # Selection of pretrained model used (1,2,3)
+     --frame_rate (int)                 # Selects the sample rate of the input video or video captured by the webcam
+     --display_mode (str)               # webcam/video. Selects input data from the model, emotions can be detected in real time via webcam or video input by the                                             user.
+     
 
 <b> Example </b>
 
