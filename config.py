@@ -17,6 +17,9 @@ WEIGHT_DECAY = 1
 GAMMA = 0
 RESULTS_PER_PERSON = False
 MODEL_DISPLAY = 1
+DISPLAY_MODE = "webcam"
+FRAME_RATE_WEBCAM = 50
+FRAME_RATE_VID = 3
 
 # WEAKLOSS PARAMETERS 
 LOSS_BOUNDS = [[0., 0.15], [0.85, 10.0]] # We require at least 85% of the frames to be correct.

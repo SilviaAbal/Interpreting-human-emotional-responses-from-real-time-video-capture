@@ -23,30 +23,29 @@ from evaluation import computeAUROC,evaluation,performance,plotConfusionMatrix,p
 import time
 import re
 from weak_loss_layer.weak_loss import WeakLoss
-
+from torchvision import transforms
 
 
 root_path = os.getcwd()
 
 # command line argument
-ap = argparse.ArgumentParser()
-ap.add_argument("--mode", help="train/display. train: finetunning the model / display: detects emotions in real time via webcam")
+ap = argparse.ArgumentParser(description='Emotion recognition system')
+ap.add_argument("--mode", help="train/display. train: finetunning the model / display: detects emotions in real time via webcam or video")
 ap.add_argument('--num_epoch', type=int, default=cfg.NUM_EPOCH, help="(int) Number of epochs for training the network. Default: 15.")
 ap.add_argument('--batch_size', type=int, default=cfg.BATCH_SIZE, help="(int) Batch size for the training of the network. Default: 64.")
 ap.add_argument('--lr', type=float, default=cfg.LR, help="(float) Learning rate. Default: 6e-5.")
 ap.add_argument('--gamma', type=float, default=cfg.GAMMA, help="(float) Discount rate of future rewards. Default: 0.")
-ap.add_argument('--percentage', type=float, default=cfg.PERCEN, help="(float) Percentage of AffectNet images used for finetunning the model [0,100]. Default: 0.05 (=0.0005%)")
+ap.add_argument('--percentage', type=float, default=cfg.PERCEN, help="(float) Percentage of AffectNet images used for finetunning the model [0,100]. Default: 0.05 (=0.0005%%)")
 ap.add_argument('--weight_decay', type=float, default=cfg.WEIGHT_DECAY, help="(float) L2 regularization method. Default: 1")
 ap.add_argument('--results_per_person', type=bool, default=cfg.RESULTS_PER_PERSON, help="(boolean) Display the results obtained per person identified in the dataset. Default: False")
 ap.add_argument('--pretrained_model_display', type=int, default=cfg.MODEL_DISPLAY, help="(int) Selection of pretrained model used (1,2,3). Default: 1")
+ap.add_argument('--display_mode', default=cfg.DISPLAY_MODE, help="webcam/video. Selects input data from the model, emotions can be detected in real time via webcam or video input by the user. Default: webcam")
+ap.add_argument('--frame_rate', type=int,default=0, help="(int) Selects the number of frames necessary to determine a valid emotion.")
 
 args = ap.parse_args()
 
 mode = args.mode
 results_person = args.results_per_person
-
-# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# print(device)
 
 eye_cascade = cv2.CascadeClassifier(root_path + '/classifier/haarcascade_eye.xml')
 facecasc = cv2.CascadeClassifier(root_path + '/classifier/haarcascade_frontalface_default.xml')
@@ -510,14 +509,16 @@ if mode == "train":
             dict_results = path_results + "/accuracy_results_per_category_per_person.csv"
             df1_class.to_csv(dict_results, index=False) 
             
-
-    
-
     
 # Emotions will be displayed on your face from the webcam feed
 if mode == "display":
-
+    
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print(device)
+    
     path_model = root_path + '/pretrained_models/model_display_'+str(args.pretrained_model_display)+'.pt'
+  
     if torch.cuda.is_available():
         model = torch.load(path_model,map_location=torch.device('cuda:0'))
         model.to(device)
@@ -525,7 +526,9 @@ if mode == "display":
         model = torch.load(path_model,map_location=torch.device('cpu'))
  
     model.eval()
-
+    
+    display_mode = args.display_mode
+    frame_rate = args.frame_rate
     # prevents openCL usage and unnecessary logging messages
     cv2.ocl.setUseOpenCL(False)
 
@@ -533,8 +536,28 @@ if mode == "display":
     wait_frame = 0
     acum = 0
     count_frame = 0
-    cap = cv2.VideoCapture(0)
+    emotions = [0,0,0]
+    emotions_total = [0,0,0]
+    # command line request for the path to the video file
+    if display_mode == "video": 
+        if frame_rate==0:
+            frame_rate = cfg.FRAME_RATE_VID
+        try:
+          video_path = str(input("Enter the full path to the video file: "))
+        except Exception as e:
+          print("Error:", e)
+        
+        cap = cv2.VideoCapture(video_path)
+        while not cap.isOpened():
+            cap = cv2.VideoCapture(video_path)
+            cv2.waitKey(1000)
+    else:
+        if frame_rate==0:
+            frame_rate = cfg.FRAME_RATE_WEBCAM
+        cap = cv2.VideoCapture(0)
+        
     while True:
+        
         # Find haar cascade to draw bounding box around face
         ret, frame = cap.read()
         wait_frame += 1
@@ -546,34 +569,51 @@ if mode == "display":
            
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = facecasc.detectMultiScale(gray,scaleFactor=1.3, minNeighbors=5)
-    
+            
+            color = [(204, 102, 0),(0, 204, 0),(0, 0, 204)]
             for (x, y, w, h) in faces:
-                cv2.rectangle(frame, (x, y-50), (x+w, y+h+10), (255, 0, 0), 2)
+               
                 roi_gray = gray[y:y + h, x:x + w]
                 eyes = eye_cascade.detectMultiScale(roi_gray) # detecto tb los ojos porque aveces no funciona bien la cara,
                                 
                 if len(eyes) > 0: 
                     count_frame += 1
-                    img = cv2.cvtColor(roi_gray, cv2.COLOR_GRAY2BGR)
+                    img = cv2.resize(roi_gray, (224,224))
+                    img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+                 
+                    normalize = transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+                    transform = transforms.ToTensor()
                     
-                    cropped_img = img.reshape((1, 3, w,w))   
-                    cropped_img= torch.from_numpy(cropped_img)
-                    cropped_img = cropped_img/255
+                    cropped_img = transform(img)
+                    cropped_img = normalize(cropped_img)
+                    cropped_img = cropped_img.reshape((1, 3, 224,224)) 
                     cropped_img = cropped_img.to(device)
+                   
                     output = model(cropped_img)
-                    prediction = int(torch.max(output.data, 1)[1].cpu().numpy())
+                    output = F.softmax(output.data,dim=1)
                     
-                    # print(prediction)
-                    acum += prediction
-                    if (count_frame==80):
-                        prediction = round(acum/count_frame)
-                        cv2.putText(frame, Own_emotion_dict[prediction], (x+20, y-60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
-                        print(Own_emotion_dict[prediction])
+                    prediction = int(torch.max(output.data, 1)[1].cpu().numpy())
+
+                    emotions[prediction] = emotions[prediction]+1
+                    emotions_total[prediction] = emotions_total[prediction]+1
+
+                    if (count_frame==frame_rate):
+                        prediction = emotions.index(max(emotions))
+                        cv2.rectangle(frame, (x, y - 20), (x+w, y+h + 10), color[prediction], 6)
+                        cv2.putText(frame, Own_emotion_dict[prediction], (x+20, y-40), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 6, cv2.LINE_AA)           
+                        count_frame = 0
+                        emotions = [0,0,0]
                         break
                 
-            cv2.imshow('Video', cv2.resize(frame,(1600,960),interpolation = cv2.INTER_CUBIC))
+            cv2.imshow('Video', cv2.resize(frame,(800,480),interpolation = cv2.INTER_CUBIC))
+            
             if cv2.waitKey(1) & 0xFF == ord('q'):
+                print(emotions_total)
                 break
+            if display_mode == "video": 
+                if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
+                    print("Most of the emotions captured in the video are", Own_emotion_dict[emotions_total.index(max(emotions_total))] )
+                    break
 
     cap.release()
     cv2.destroyAllWindows()
